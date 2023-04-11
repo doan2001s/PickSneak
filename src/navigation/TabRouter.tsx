@@ -23,28 +23,32 @@ export const TabRouter = () => {
           } else if (route.name === 'Profile') {
             iconName = focused ? 'account' : 'account';
           } else if (route.name === 'Favourite') {
-            iconName = focused ? 'cards-heart-outline' : 'cards-heart-outline';
+            iconName = focused ? 'card-search-outline' : 'card-search-outline';
           } else if (route.name === 'Messenger') {
             iconName = focused ? 'message-outline' : 'message-outline';
           } else if (route.name === 'Trip') {
-            iconName = focused ? 'flag-outline' : 'flag-outline';
+            iconName = focused ? 'cart-outline' : 'cart-outline';
           }
 
           // You can return any component that you like here!
           return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: 'tomato',
+        tabBarActiveTintColor: '#fff',
         tabBarInactiveTintColor: 'gray',
+        tabBarStyle: {
+          backgroundColor: 'black'
+        }
       })}
+
     >
       <Tab.Screen options={{
         tabBarLabel: 'Khám phá'
       }} name="Discover" component={Discover} />
       <Tab.Screen options={{
-        tabBarLabel: 'Yêu thích'
+        tabBarLabel: 'Tìm kiếm'
       }} name="Favourite" component={Favourite} />
       <Tab.Screen options={{
-        tabBarLabel: 'Chuyến đi'
+        tabBarLabel: 'Giỏ hàng'
       }} name="Trip" component={Trip} />
       <Tab.Screen options={{
         tabBarLabel: 'Hộp thư'
