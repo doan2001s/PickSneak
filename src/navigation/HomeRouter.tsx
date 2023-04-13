@@ -7,6 +7,7 @@ import { TabRouter } from './TabRouter';
 import { ComeApp } from '../screens/ComeApp';
 import { Register } from '../screens/RegisterStack';
 import { OTPScreen } from '../screens/RegisterStack';
+import { Detail } from '../screens/ProductDetail';
 const Stack = createStackNavigator();
 import { useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -40,6 +41,7 @@ export const HomeRouter = () => {
             >
                 {uidExists ? (
                     <Stack.Screen name='TabRouter' component={TabRouter} />
+                    
                 ) : (
                     <>
                         {/* <Stack.Screen name='Spalsh' component={Spalsh}/> */}
@@ -49,6 +51,7 @@ export const HomeRouter = () => {
                         <Stack.Screen name='Login' component={Login} />
                     </>
                 )}
+                <Stack.Screen name='Detail' component={Detail}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
