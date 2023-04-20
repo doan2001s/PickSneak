@@ -14,23 +14,23 @@ export const registerUser = (email, password, name, navigation) => async (dispat
         await firestore().collection('users').doc(user.uid).set({
             name: name,
         });
-        console.log("Đăng ký",user)
+        await firestore().collection('users').doc(user.uid).collection('cart').doc('default').set({
+            cart: [],
+        });
+        await firestore().collection('users').doc(user.uid).collection('favorites').doc('default').set({
+            favorites: [],
+        });
+        console.log("Đăng ký", user)
         dispatch({
             type: CREATE_USER_SUCCESS,
             payload: user,
         });
         Alert.alert("Đăng ký thành công")
-        navigation.dispatch(
-            CommonActions.reset({
-                index: 0,
-                routes: [{ name: 'Login' }],
-            })
-        );
+        navigation.navigate('Login')
     } catch (error) {
         dispatch({
             type: CREATE_USER_FAILURE,
             payload: error,
         });
-        Alert.alert("Đăng ký không thành công");
     }
 }

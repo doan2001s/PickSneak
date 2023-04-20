@@ -6,10 +6,10 @@ import { CategoryList } from "./component/CategoryList";
 import { ProductList } from "./component/ProductList";
 export const Discover = () => {
     return (
-        <SafeAreaView style={{backgroundColor:'black',height:"100%"}}>
-            <AppHeader />
-            <CategoryList/>
-            <ProductList/>
+        <SafeAreaView style={{ backgroundColor: 'black', height: "100%" }}>
+            <AppHeader title="PICKSNEAK" fontSize={18} />
+            <CategoryList />
+            <ProductList />
         </SafeAreaView>
     );
 };

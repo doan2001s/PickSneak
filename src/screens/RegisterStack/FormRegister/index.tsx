@@ -19,7 +19,7 @@ export const Register = ({ navigation }) => {
     const handleLogin = async () => {
         // Xử lý đăng nhập ở đây
         try {
-          const response =  await dispatch(registerUser(email, password, name));
+          const response =  await dispatch(registerUser(email, password, name,navigation));
           console.log(response)
         } catch (error) {
             

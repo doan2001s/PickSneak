@@ -6,7 +6,7 @@ import store from './src/redux-store/store/store';
 import { Provider } from 'react-redux';
 import { LogBox } from 'react-native';
 export default App = () => {
-  LogBox.ignoreLogs(['Remote debugger']);
+  LogBox.ignoreAllLogs();
   return (
     // <NavigationContainer>
     <Provider store={store}>

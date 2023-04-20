@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground, Image, TextInput } from 'react-native';
 import { styles } from "./styles";
-import { useNavigation } from '@react-navigation/native';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { AirBnbText, GoBack } from '../../component/index';
 import firestore from '@react-native-firebase/firestore';
 import firebase from '@react-native-firebase/app';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from '../../redux-store/actions/auth';
+import { useNavigation } from '@react-navigation/native';
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -16,16 +16,16 @@ export const Login = () => {
     const [hidePassword, setHidePassword] = useState(true);
     const [isSignUpDisabled, setIsSignUpDisabled] = useState(true);
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.user);
+    console.log("user", user)
     const navigation = useNavigation();
-    const user = useSelector((state) => state);
     const handleSignUp = async () => {
         console.log("Click")
         try {
-            const response = await dispatch(loginUser(email, password,navigation));
-            console.log("Dang nhap ",response)
+            const response = await dispatch(loginUser(email, password, navigation));
+            console.log("res", response)
         } catch (error) {
             console.log(error)
-            console.log("FAIL")
         }
     };
 

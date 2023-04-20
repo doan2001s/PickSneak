@@ -2,8 +2,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Discover } from "../screens/Discover";
 import { Profile } from "../screens/Profile";
 import { Messenger } from "../screens/Messenger";
-import { Trip } from "../screens/Trip";
+import { CartScreen } from "../screens/Trip";
 import { Favourite } from "../screens/Favourite";
+import { Search } from "../screens/Search";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import React from "react";
 const Tab = createBottomTabNavigator();
@@ -22,11 +23,11 @@ export const TabRouter = () => {
               : 'home-search-outline';
           } else if (route.name === 'Profile') {
             iconName = focused ? 'account' : 'account';
-          } else if (route.name === 'Favourite') {
+          } else if (route.name === 'Search') {
             iconName = focused ? 'card-search-outline' : 'card-search-outline';
           } else if (route.name === 'Messenger') {
             iconName = focused ? 'message-outline' : 'message-outline';
-          } else if (route.name === 'Trip') {
+          } else if (route.name === 'CartScreen') {
             iconName = focused ? 'cart-outline' : 'cart-outline';
           }
 
@@ -46,12 +47,12 @@ export const TabRouter = () => {
       }} name="Discover" component={Discover} />
       <Tab.Screen options={{
         tabBarLabel: 'Tìm kiếm'
-      }} name="Favourite" component={Favourite} />
+      }} name="Search" component={Search} />
       <Tab.Screen options={{
         tabBarLabel: 'Giỏ hàng'
-      }} name="Trip" component={Trip} />
+      }} name="CartScreen" component={CartScreen} />
       <Tab.Screen options={{
-        tabBarLabel: 'Hộp thư'
+        tabBarLabel: 'Events'
       }} name="Messenger" component={Messenger} />
       <Tab.Screen options={{
         tabBarLabel: 'Tiểu sử'
