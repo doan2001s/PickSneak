@@ -55,6 +55,17 @@ export const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 50
     },
+    boxButtonLoveRed: {
+        width: '70%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 50,
+        // backgroundColor: 'white',
+        top: 10,
+        borderRadius: 50,
+        borderColor: 'red',
+        borderWidth: 1
+    },
     boxButtonLove: {
         width: '70%',
         alignItems: 'center',
@@ -80,11 +91,16 @@ export const styles = StyleSheet.create({
         fontSize: 15
     },
     ButtonTitleLove: {
-        color:'#fff',
+        color: '#fff',
         fontWeight: '700',
         fontSize: 15
     },
-    boxDescripton:{
-       marginTop:20
+    ButtonTitleLoveRed: {
+        color: 'red',
+        fontWeight: '700',
+        fontSize: 15
+    },
+    boxDescripton: {
+        marginTop: 20
     },
 })

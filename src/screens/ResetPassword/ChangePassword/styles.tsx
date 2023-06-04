@@ -120,9 +120,6 @@ export const styles = StyleSheet.create({
         color: 'silver',
         fontWeight: 'bold',
     },
-    errorText:{
-        color:'red'
-    }
 });
 
 

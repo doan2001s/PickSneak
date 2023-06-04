@@ -2,20 +2,35 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CurrencyInput from 'react-native-currency-input';
-export const CartItem = ({ item }) => {
-    const [quantity, setQuantity] = useState(item.quantity);
-    const [totalPrice, setTotalPrice] = useState(item.price * item.quantity);
-    const [trigger, setTrigger] = useState(true);
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setTrigger(!trigger);
-        }, 1000);
+import { useDispatch, useSelector } from 'react-redux';
+import { increaseQuantity, decreaseQuantity, deleteProduct } from '../../../redux-store/actions/cart';
 
-        return () => clearInterval(intervalId);
-    }, [trigger]);
+export const CartItem = ({ item}) => {
+    const [quantity, setQuantity] = useState(item.quantity || 1);
+    const [totalPrice, setTotalPrice] = useState(item.price * item.quantity);
+
     useEffect(() => {
         setTotalPrice(item.price * quantity);
-    }, [quantity,trigger]);
+    }, []);
+
+    const dispatch = useDispatch();
+
+    const increaseQuantityHandler = () => {
+        dispatch(increaseQuantity(item));
+        setQuantity(quantity + 1);
+        setTotalPrice(item.price * (quantity + 1));
+    };
+
+    const decreaseQuantityHandler = () => {
+        if (quantity > 1) {
+            dispatch(decreaseQuantity(item));
+            setQuantity(quantity - 1);
+            setTotalPrice(item.price * (quantity - 1));
+        }
+    };
+    const deleteProductCart = () => {
+        dispatch(deleteProduct(item))
+    }
     return (
         <View style={styles.boxCart}>
             <View style={styles.cartItem}>
@@ -33,11 +48,11 @@ export const CartItem = ({ item }) => {
                     </View>
                 </View>
                 <View style={styles.quantityContainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => decreaseQuantityHandler()}>
                         <Icon name="minus-circle" size={30} color="#888" />
                     </TouchableOpacity>
                     <Text style={styles.quantity}>{item.quantity}</Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => increaseQuantityHandler()}>
                         <Icon name="plus-circle" size={30} color="#888" />
                     </TouchableOpacity>
                 </View>
@@ -50,14 +65,13 @@ export const CartItem = ({ item }) => {
                     delimiter="."
                     precision={0}
                 />
-                <TouchableOpacity style={styles.removeItemButton}>
+                <TouchableOpacity onPress={() => deleteProductCart()} style={styles.removeItemButton}>
                     <Icon name="trash-can-outline" size={25} color="#888" />
                 </TouchableOpacity>
             </View>
         </View>
     );
 };
-
 const styles = StyleSheet.create({
     boxCart: {
         width: '100%',

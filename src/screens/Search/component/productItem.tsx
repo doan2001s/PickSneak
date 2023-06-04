@@ -8,6 +8,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 const { height } = Dimensions.get('window');
+
 export const ProductList = () => {
     const dispatch = useDispatch();
     const productStage = useSelector((state) => state.products);
@@ -29,13 +30,19 @@ export const ProductList = () => {
     }, [searchValue]);
 
     const handleSearch = () => {
-        const newData = productStage.productList.filter((item) => {
-            const itemName = item.name.toLowerCase();
-            return itemName.indexOf(searchValue.toLowerCase()) > -1;
-        });
-        setFilteredData(newData);
-        setShowList(true);
+        if (searchValue.trim() !== '') {
+            const newData = productStage.productList.filter((item) => {
+                const itemName = item.name.toLowerCase();
+                return itemName.indexOf(searchValue.toLowerCase()) > -1;
+            });
+            setFilteredData(newData);
+            setShowList(true);
+        } else {
+            setFilteredData(null); 
+            setShowList(false); 
+        }
     };
+
 
     return (
         <View>
@@ -88,7 +95,7 @@ export const ProductList = () => {
                             )}
                         />
                     ) : (
-                        <Text>Không tìm thấy sản phẩm nào</Text>
+                        <Text style={{ color: '#fff' }}>Không tìm thấy sản phẩm nào</Text>
                     )}
                 </View>
             )}

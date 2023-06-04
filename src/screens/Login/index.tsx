@@ -49,7 +49,7 @@ export const Login = () => {
 
     const validatePassword = (text) => {
         // Password validation regex
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+        const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
         setPassword(text);
         if (passwordRegex.test(text)) {
             setPasswordError('');
@@ -109,7 +109,7 @@ export const Login = () => {
                         <TouchableOpacity onPress={handleSignUp} style={styles.button} disabled={isSignUpDisabled}>
                             <Text style={styles.buttonText}>Đăng nhập</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => console.log('Quên mật khẩu')} style={styles.link}>
+                        <TouchableOpacity onPress={() => navigation.navigate('ChangePassword')} style={styles.link}>
                             <Text style={styles.linkText}>Quên mật khẩu?</Text>
                         </TouchableOpacity>
                         <View style={styles.signupContainer}>

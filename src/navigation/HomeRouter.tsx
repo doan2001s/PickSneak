@@ -9,8 +9,17 @@ import { Register } from '../screens/RegisterStack';
 import { OTPScreen } from '../screens/RegisterStack';
 import { Detail } from '../screens/ProductDetail';
 import { Favourite } from '../screens/Favourite';
+import { Checkout } from '../screens/Checkout';
+import { General } from '../screens/General';
 import { useNavigation } from '@react-navigation/native';
+import { OTPInput } from '../screens/ResetPassword';
+import { ChangePassword } from '../screens/ResetPassword';
+
+
+
+
 const Stack = createStackNavigator();
+
 import { useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setUser } from '../redux-store/actions/auth';
@@ -37,24 +46,44 @@ export const HomeRouter = () => {
     }, [dispatch]);
 
     return (
+        // <NavigationContainer>
+        //     <Stack.Navigator
+        //         screenOptions={{ headerShown: false }}
+        //     >
+        //         {uidExists ? (
+        //             <Stack.Screen name='TabRouter' component={TabRouter} />
+
+        //         ) : (
+        //             <>
+        //                 {/* <Stack.Screen name='Spalsh' component={Spalsh}/> */}
+        //                 <Stack.Screen name='ComeApp' component={ComeApp} />
+        //                 <Stack.Screen name='Register' component={Register} />
+        //                 <Stack.Screen name='OTPScreen' component={OTPScreen} />
+        //                 <Stack.Screen name='Login' component={Login} />
+        //             </>
+        //         )}
+        //         <Stack.Screen name='Detail' component={Detail} />
+        //         <Stack.Screen name='Favourite' component={Favourite} />
+        //         <Stack.Screen name='Checkout' component={Checkout} />
+        //         <Stack.Screen name='General' component={General} />
+        //     </Stack.Navigator>
+        // </NavigationContainer>
         <NavigationContainer>
             <Stack.Navigator
                 screenOptions={{ headerShown: false }}
             >
-                {uidExists ? (
-                    <Stack.Screen name='TabRouter' component={TabRouter} />
-
-                ) : (
-                    <>
-                        {/* <Stack.Screen name='Spalsh' component={Spalsh}/> */}
-                        <Stack.Screen name='ComeApp' component={ComeApp} />
-                        <Stack.Screen name='Register' component={Register} />
-                        <Stack.Screen name='OTPScreen' component={OTPScreen} />
-                        <Stack.Screen name='Login' component={Login} />
-                    </>
-                )}
+                {/* <Stack.Screen name='Spalsh' component={Spalsh}/> */}
+                <Stack.Screen name='ComeApp' component={ComeApp} />
+                <Stack.Screen name='Register' component={Register} />
+                <Stack.Screen name='OTPScreen' component={OTPScreen} />
+                <Stack.Screen name='Login' component={Login} />
+                <Stack.Screen name='ChangePassword' component={ChangePassword} />
+                <Stack.Screen name='OTPInput' component={OTPInput} />
+                <Stack.Screen name='TabRouter' component={TabRouter} />
                 <Stack.Screen name='Detail' component={Detail} />
                 <Stack.Screen name='Favourite' component={Favourite} />
+                <Stack.Screen name='Checkout' component={Checkout} />
+                <Stack.Screen name='General' component={General} />
             </Stack.Navigator>
         </NavigationContainer>
     );

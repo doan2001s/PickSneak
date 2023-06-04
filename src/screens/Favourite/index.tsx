@@ -6,9 +6,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { getFavourite } from "../../redux-store/actions/favourite";
 import { useFocusEffect } from '@react-navigation/native';
 import { LikeItem } from "./component/likeItem";
+
 export const Favourite = () => {
     const dispatch = useDispatch();
-    const favoritesItem = useSelector(state => state.favorites.favoritesItem)
+    const favoritesItem = useSelector((state) => state.favorites.favoritesItem) || [];
     console.log("Danh sách", favoritesItem)
     useFocusEffect(
         React.useCallback(() => {
@@ -17,7 +18,7 @@ export const Favourite = () => {
             }, 100);
 
             return () => clearInterval(intervalId);
-        }, [])
+        }, [favoritesItem])
     );
 
     return (

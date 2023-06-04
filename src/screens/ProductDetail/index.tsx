@@ -7,7 +7,7 @@ import { getProductById } from "../../redux-store/actions/product";
 import { GoBack } from "../../component";
 import { styles } from "./styles";
 import { addToCart } from "../../redux-store/actions/cart";
-import { addtoFavourite } from "../../redux-store/actions/favourite";
+import { addtoFavourite, removeFromFavourite } from "../../redux-store/actions/favourite";
 import CurrencyInput from 'react-native-currency-input';
 export const Detail = () => {
     const dispatch = useDispatch();
@@ -16,18 +16,27 @@ export const Detail = () => {
 
     useEffect(() => {
         dispatch(getProductById(id));
-    }, []);
+    }, [isFavourite]);
     const product = useSelector((state) => state.products.product);
-    console.log("Product", product);
+    console.log("Product", product)
 
     const handleAddToCart = () => {
         console.log("add to cart")
         dispatch(addToCart(product))
     }
+    const favoritesItem = useSelector((state) => state.favorites.favoritesItem)
+    const isFavourite = favoritesItem.some(item => item.id === product.id)
     const handleAddToFavourites = () => {
-        console.log("add to yêu thích")
-        dispatch(addtoFavourite(product))
+        if (isFavourite) {
+            console.log(isFavourite)
+            dispatch(removeFromFavourite(id))
+        }
+        else {
+            console.log("add to yêu thích")
+            dispatch(addtoFavourite(product))
+        }
     }
+
     if (!product) {
         return (
             <View>
@@ -66,35 +75,35 @@ export const Detail = () => {
                         />
                     </View>
                 </View>
-                <View style={{width: '100%', maxHeight: 500 }}>
+                <View style={{ width: '100%', maxHeight: 500 }}>
                     <TouchableOpacity onPress={() => handleAddToCart()} style={styles.boxButton} activeOpacity={0.9}>
                         <View style={styles.boxButtonCart}>
                             <Text style={styles.ButtonTitle}>Giỏ hàng</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => handleAddToFavourites()} style={styles.boxButton} activeOpacity={0.9}>
-                        <View style={styles.boxButtonLove}>
-                            <Text style={styles.ButtonTitleLove}>Yêu thích</Text>
+                        <View style={isFavourite ? styles.boxButtonLoveRed : styles.boxButtonLove}>
+                            <Text style={isFavourite ? styles.ButtonTitleLoveRed : styles.ButtonTitleLove}>Yêu thích</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
+                <View style={{ alignItems: 'center',paddingTop:15 }}>
+                    <Text style={{ fontSize: 18 }}>
+                        {product.color}
+                    </Text>
+                </View>
                 <View style={styles.boxDescripton}>
-                    <View>
+                    <View style={{ paddingHorizontal: 20 }}>
                         <Text>
                             {product.description}
                         </Text>
                     </View>
-                    <View>
+                    <View style={{ paddingHorizontal: 20 }}>
                         <Text>
                             {product.description}
                         </Text>
                     </View>
-                    <View>
-                        <Text>
-                            {product.color}
-                        </Text>
-                    </View>
-                    <View>
+                    <View style={{ paddingHorizontal: 20, }}>
                         <Text>
                             {product.style}
                         </Text>

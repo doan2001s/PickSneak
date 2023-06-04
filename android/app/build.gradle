@@ -154,7 +154,7 @@ dependencies {
     implementation("com.facebook.react:react-android")
 
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
-    
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
     implementation 'com.facebook.fresco:animated-gif:2.6.0'
     implementation 'com.facebook.fresco:animated-webp:2.0.0'
     implementation 'com.facebook.fresco:webpsupport:2.0.0'
